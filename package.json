@@ -8,8 +8,8 @@
   "scripts": {
     "lint": "eslint --fix packages/**/*.js packages/**/bin/*",
     "changelog": "node scripts/genChangelog.js run",
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verifyCommitMsg.js"
+    "precommit": "lint-staged",
+    "commitmsg": "node scripts/verifyCommitMsg.js"
   },
   "lint-staged": {
     "*.{js}": [
