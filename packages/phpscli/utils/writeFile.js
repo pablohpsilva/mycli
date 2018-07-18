@@ -10,7 +10,7 @@ const writeFile = (fileContent, fileName, fileExtension, path) => {
   const candidateFileName = `${fileName}.${fileExtension}`
   const dataPath = `${path}/${fileName}`
 
-  if (!test('-e', dataPath) || !test('-e', `${dataPath}.${fileExtension}`) ) {
+  if (test('-e', `${dataPath}.${fileExtension}`)) {
     mkdir('-p', dataPath)
     cd(dataPath)
     new ShellString(fileContent).to(`${candidateFileName}`)

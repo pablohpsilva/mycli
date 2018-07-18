@@ -13,7 +13,7 @@ function getFramework ({ angular, vue }) {
       : 'react'
 }
 
-checkNodeVersion('flamecli', requiredNodeVersion)
+checkNodeVersion(packageJSON.name, requiredNodeVersion)
 
 program
   .version(version, '-v, --version')
@@ -26,13 +26,13 @@ program
   .option('-r, --react', 'build something for react')
   .option('-v, --vue', 'build something for vue')
   .option('-a, --angular', 'build something for angular')
-  .option('-x, --flux', 'set redux flag')
+  .option('-x, --redux', 'set redux flag')
   .option('-b, --airbnb', 'set airbnb flag')
   .option('-y, --functional', 'create functional stuff (if it can...)')
   .option('-t, --test', 'set test flag (this will build some tests for ya (if it can...))')
   .action((cmd) => {
     const args = cleanArgs(cmd)
-    loadScript('libs/build.js')(getFramework(args), args)
+    require('./libs/build').default(getFramework(args), args)
   })
 
 program.parse(process.argv)
